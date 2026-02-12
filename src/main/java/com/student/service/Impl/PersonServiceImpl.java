@@ -1,7 +1,9 @@
 package com.student.service.Impl;
 
 import com.student.dao.repository.PersonRepository;
+import com.student.dto.CountriesWithSalariesDto;
 import com.student.dto.PersonCreateDto;
+import com.student.dto.PersonGroupByCountryDto;
 import com.student.dto.PersonNameAndAgeDto;
 import com.student.mapper.PersonMapper;
 import com.student.service.PersonService;
@@ -53,5 +55,15 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public List<PersonCreateDto> getPersonByName(String name) {
         return personRepository.getPersonByName(name);
+    }
+
+    @Override
+    public List<PersonGroupByCountryDto> getCountries() {
+        return personRepository.getGroupCountry();
+    }
+
+    @Override
+    public List<CountriesWithSalariesDto> getSalariesByCountries() {
+        return personRepository.getSalariesByCounrtries();
     }
 }

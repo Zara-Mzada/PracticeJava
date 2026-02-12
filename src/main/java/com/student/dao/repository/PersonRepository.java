@@ -1,7 +1,9 @@
 package com.student.dao.repository;
 
 import com.student.dao.entity.PersonEntity;
+import com.student.dto.CountriesWithSalariesDto;
 import com.student.dto.PersonCreateDto;
+import com.student.dto.PersonGroupByCountryDto;
 import com.student.dto.PersonNameAndAgeDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -75,4 +77,22 @@ public interface PersonRepository extends JpaRepository<PersonEntity, Long> {
             nativeQuery = true
     )
     List<PersonCreateDto> getPersonByName(@Param("name") String name);
+
+
+    @Query(
+            value = "SELECT p.country, count(p.country)\n" +
+                    "FROM person as p\n" +
+                    "GROUP BY p.country",
+            nativeQuery = true
+    )
+    List<PersonGroupByCountryDto> getGroupCountry();
+
+
+    @Query(
+            value = "SELECT p.country, SUM(p.salary)\n" +
+                    "FROM person as p\n" +
+                    "GROUP BY p.country ",
+            nativeQuery = true
+    )
+    List<CountriesWithSalariesDto> getSalariesByCounrtries();
 }

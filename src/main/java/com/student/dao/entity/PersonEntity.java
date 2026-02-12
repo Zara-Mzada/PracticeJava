@@ -17,4 +17,6 @@ public class PersonEntity {
     private String firstName;
     private String lastName;
     private Integer age;
+    private String country;
+    private Double salary;
 }

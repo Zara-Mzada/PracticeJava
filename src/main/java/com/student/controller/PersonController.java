@@ -1,7 +1,8 @@
 package com.student.controller;
 
-import com.student.dao.entity.PersonEntity;
+import com.student.dto.CountriesWithSalariesDto;
 import com.student.dto.PersonCreateDto;
+import com.student.dto.PersonGroupByCountryDto;
 import com.student.dto.PersonNameAndAgeDto;
 import com.student.service.Impl.PersonServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +39,16 @@ public class PersonController {
     @GetMapping("n&a")
     public List<PersonNameAndAgeDto> getPersonSameNameAge(){
         return personService.getData();
+    }
+
+    @GetMapping("groupByCountry")
+    public List<PersonGroupByCountryDto> getGroupByCountry(){
+        return personService.getCountries();
+    }
+
+    @GetMapping("salariesByCountry")
+    public List<CountriesWithSalariesDto> getSalariesByCountry(){
+        return personService.getSalariesByCountries();
     }
 
     @PutMapping("update")
